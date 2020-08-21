@@ -1,7 +1,9 @@
 package jp.co.axa.apidemo.services;
 
+import jp.co.axa.apidemo.dto.EmployeeDto;
 import jp.co.axa.apidemo.entities.Employee;
 import jp.co.axa.apidemo.repositories.EmployeeRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +34,32 @@ public class EmployeeServiceImpl implements EmployeeService{
         employeeRepository.save(employee);
     }
 
-    public void deleteEmployee(Long employeeId){
+    public void deleteEmployee(Long employeeId) {
         employeeRepository.deleteById(employeeId);
     }
 
     public void updateEmployee(Employee employee) {
         employeeRepository.save(employee);
+    }
+
+    public EmployeeDto empToDto(Employee employee) {
+
+        EmployeeDto employeeDto = new EmployeeDto();
+
+        BeanUtils.copyProperties(employee, employeeDto);
+
+        return employeeDto;
+
+    }
+
+
+    public Employee dtoToEmp(EmployeeDto employeeDto) {
+
+        Employee employee = new Employee();
+
+        BeanUtils.copyProperties(employeeDto, employee);
+
+        return employee;
+
     }
 }

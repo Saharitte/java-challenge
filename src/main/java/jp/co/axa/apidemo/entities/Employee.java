@@ -1,38 +1,45 @@
 package jp.co.axa.apidemo.entities;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="EMPLOYEE")
+@Table(name = "EMPLOYEE")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
 
-    @Getter
-    @Setter
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
-    @Setter
-    @Column(name="EMPLOYEE_NAME")
-    private String name;
+    @Column(name = "EMPLOYEE_FST_NAME")
+    private String firstName;
 
-    @Getter
-    @Setter
-    @Column(name="EMPLOYEE_SALARY")
+
+    @Column(name = "EMPLOYEE_LST_NAME")
+    private String lastName;
+
+
+    @Column(name = "ADDRESS")
+    private String address;
+
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "EMPLOYEE_SALARY")
     private Integer salary;
 
-    @Getter
-    @Setter
-    @Column(name="DEPARTMENT")
-    private String department;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEP_ID")
+    private Department department;
 
 }
