@@ -4,11 +4,9 @@ import jp.co.axa.apidemo.dto.DepartmentDto;
 import jp.co.axa.apidemo.dto.EmployeeDto;
 import jp.co.axa.apidemo.entities.Department;
 import jp.co.axa.apidemo.repositories.DepartmentRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -121,27 +119,31 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     public Department dtoToDept(DepartmentDto departmentDto) {
 
-        Department department = new Department();
 
-        if (departmentDto.getEmployeeDtoList() == null) departmentDto.setEmployeeDtoList(new ArrayList<>());
+        return Department.builder()
+                .depId(departmentDto.getDepId())
+                .deptName(departmentDto.getDeptName())
+                .deptCode(departmentDto.getDeptCode())
+                .employeeList(departmentDto.getEmployeeDtoList() != null ? departmentDto.getEmployeeDtoList().stream().map(employeeDto -> employeeService.dtoToEmp(employeeDto)).collect(Collectors.toList()) : null)
 
-
-        BeanUtils.copyProperties(departmentDto, department);
-
-        return department;
+                .build();
 
     }
 
 
     public DepartmentDto deptToDto(Department department) {
 
-        DepartmentDto departmentDto = new DepartmentDto();
+        return DepartmentDto.builder()
 
-        if (department.getEmployeeList() == null) department.setEmployeeList(new ArrayList<>());
+                .depId(department.getDepId())
 
-        BeanUtils.copyProperties(department, departmentDto);
+                .deptName(department.getDeptName())
 
-        return departmentDto;
+                .deptCode(department.getDeptCode())
+
+                .employeeDtoList(department.getEmployeeList() != null ? department.getEmployeeList().stream().map(employee -> employeeService.empToDto((employee))).collect(Collectors.toList()) : null)
+
+                .build();
 
     }
 

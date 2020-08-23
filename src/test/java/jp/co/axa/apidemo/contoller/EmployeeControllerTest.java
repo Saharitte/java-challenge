@@ -3,7 +3,6 @@ package jp.co.axa.apidemo.contoller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import jp.co.axa.apidemo.ApiDemoApplication;
-import jp.co.axa.apidemo.dto.EmployeeDto;
 import jp.co.axa.apidemo.entities.Employee;
 import jp.co.axa.apidemo.services.EmployeeService;
 import org.hamcrest.Matchers;
@@ -37,9 +36,10 @@ public class EmployeeControllerTest {
 
 
     List<Employee> listEmployee;
+
     @Mock
     Employee john;
-    EmployeeDto johnDto;
+
     @Autowired
     private MockMvc mvc;
     @Mock
@@ -53,9 +53,6 @@ public class EmployeeControllerTest {
         john = createTestEmployee(1L, "John", "smith", "test@test");
 
         listEmployee.add(john);
-
-        johnDto = EmployeeDto.builder().id(john.getId()).firstName(john.getFirstName()).lastName(john.getLastName()).build();
-
     }
 
     @Test

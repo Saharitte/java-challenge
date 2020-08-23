@@ -23,9 +23,9 @@ public class DepartmentController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<Void> createDepartment(@RequestBody DepartmentDto departmentdto) {
+    public ResponseEntity<Void> createDepartment(@RequestBody DepartmentDto departmentDto) {
 
-        if (null == departmentdto) {
+        if (null == departmentDto) {
 
 
             LOG.info("object is null");
@@ -35,7 +35,7 @@ public class DepartmentController {
 
         }
 
-        if (departmentService.isExistByNameDepartment(departmentdto.getDeptName())) {
+        if (departmentService.isExistByNameDepartment(departmentDto.getDeptName())) {
 
             LOG.info("departement  exists");
 
@@ -44,7 +44,7 @@ public class DepartmentController {
 
         }
 
-        departmentService.saveDepartment(departmentdto);
+        departmentService.saveDepartment(departmentDto);
 
         LOG.info("departement successuflly created");
 
@@ -54,9 +54,9 @@ public class DepartmentController {
     }
 
     @PutMapping("/update/{deptId}")
-    public ResponseEntity<Void> updateDepartment(@RequestBody DepartmentDto departmentdto, @PathVariable(name = "deptId") Long deparmentId) {
+    public ResponseEntity<Void> updateDepartment(@RequestBody DepartmentDto departmentDto, @PathVariable(name = "deptId") Long deparmentId) {
 
-        if (null == departmentdto) {
+        if (null == departmentDto) {
 
             LOG.info("object is null");
 
@@ -71,7 +71,7 @@ public class DepartmentController {
 
 
         }
-        departmentService.updateDepartment(departmentdto);
+        departmentService.updateDepartment(departmentDto);
 
         LOG.info("departement successfully updated");
 
@@ -101,8 +101,8 @@ public class DepartmentController {
     }
 
 
-    @DeleteMapping("/removedeptdata/{deparmentId}")
-    public ResponseEntity<Void> removeDepartmentAndAllEmp(@PathVariable(name = "deparmentId") Long deparmentId) {
+    @DeleteMapping("/removeDeptData/{departmentId}")
+    public ResponseEntity<Void> removeDepartmentAndAllEmp(@PathVariable(name = "departmentId") Long deparmentId) {
 
         if (!departmentService.isExistDepartment(deparmentId)) {
 
@@ -131,7 +131,7 @@ public class DepartmentController {
     }
 
 
-    @GetMapping("/deptbyname/{deptName}")
+    @GetMapping("/deptByName/{deptName}")
     public ResponseEntity<DepartmentDto> getDepartmentByName(@PathVariable(name = "deptName") String name) {
 
         if (!departmentService.isExistByNameDepartment(name)) {
@@ -145,7 +145,7 @@ public class DepartmentController {
 
     }
 
-    @GetMapping("/deptbyid/{deptId}")
+    @GetMapping("/deptById/{deptId}")
     public ResponseEntity<DepartmentDto> getDepartmentById(@PathVariable(name = "deptId") Long id) {
 
         if (!departmentService.isExistDepartment(id)) {
@@ -158,7 +158,7 @@ public class DepartmentController {
 
     }
 
-    @GetMapping("/deptbycode/{deptCode}")
+    @GetMapping("/deptByCode/{deptCode}")
     public ResponseEntity<DepartmentDto> getDepartmentByCode(@PathVariable(name = "deptCode") String code) {
 
 
@@ -173,7 +173,7 @@ public class DepartmentController {
     }
 
 
-    @GetMapping("/{deptName}/employeesbydeptname")
+    @GetMapping("/{deptName}/employeesByDeptName")
     public ResponseEntity<EmployeeDto> getAllEmployeeByDeptName(@PathVariable(name = "deptName") String name) {
 
         if (!departmentService.isExistByNameDepartment(name)) {
