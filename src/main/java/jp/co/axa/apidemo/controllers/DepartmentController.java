@@ -27,13 +27,14 @@ public class DepartmentController {
 
         if (null == departmentDto) {
 
-
             LOG.info("object is null");
 
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
 
         }
+
+        // check if departement exists or not
 
         if (departmentService.isExistByNameDepartment(departmentDto.getDeptName())) {
 
@@ -104,6 +105,7 @@ public class DepartmentController {
     @DeleteMapping("/removeDeptData/{departmentId}")
     public ResponseEntity<Void> removeDepartmentAndAllEmp(@PathVariable(name = "departmentId") Long deparmentId) {
 
+        // check if departement exists or not
         if (!departmentService.isExistDepartment(deparmentId)) {
 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

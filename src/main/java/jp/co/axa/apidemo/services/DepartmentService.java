@@ -5,7 +5,9 @@ import jp.co.axa.apidemo.dto.EmployeeDto;
 import jp.co.axa.apidemo.entities.Department;
 
 import java.util.List;
-
+/**
+ * this interface contains all methods needed for department's management
+ */
 public interface DepartmentService {
 
     Department saveDepartment(DepartmentDto departmentDto);

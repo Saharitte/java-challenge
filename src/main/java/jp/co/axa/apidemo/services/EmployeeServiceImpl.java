@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+/**
+ * this class contains implementations of all methods needed for employee's management
+ */
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -22,9 +24,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public List<Employee> retrieveEmployees() {
 
-        List<Employee> employees = employeeRepository.findAll();
+        return employeeRepository.findAll();
 
-        return employees;
     }
 
     @Override
@@ -72,6 +73,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         Employee employee = getEmployee(employeeId);
 
+        // when delete employee we need to update department's employees
+
         if (employee.getDepartment() != null) {
 
             Department department = departmentRepository.findById(employee.getDepartment().getDepId()).get();
@@ -88,9 +91,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void updateEmployee(EmployeeDto employeeDto, Long employeeId) {
+
         Employee oldEmp = employeeRepository.findById(employeeId).get();
 
         Employee updatedEmp = dtoToEmp(employeeDto);
+
+        // check if department's field is updated then update deparment table
+
 
         if (employeeDto.getDepartment() != null) {
             if (employeeDto.getDepartment().getDepId() != oldEmp.getDepartment().getDepId()) {

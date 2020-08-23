@@ -4,7 +4,9 @@ import jp.co.axa.apidemo.dto.EmployeeDto;
 import jp.co.axa.apidemo.entities.Employee;
 
 import java.util.List;
-
+/**
+ * this interface contains all methods needed for employee's management
+ */
 public interface EmployeeService {
 
     List<Employee> retrieveEmployees();

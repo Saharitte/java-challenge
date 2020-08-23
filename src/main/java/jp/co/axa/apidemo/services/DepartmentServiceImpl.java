@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+/**
+ * this class contains implementations of all methods needed for department's management
+ */
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
@@ -52,7 +54,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void removeDepartment(Long id) {
 
+        // check if employeeList is not empty
+
         if (!(departmentRepository.findById(id).get().getEmployeeList().isEmpty() || departmentRepository.findById(id).get().getEmployeeList() == null))
+
 
             getAllEmployeeByDeptId(id).forEach(employee -> {
                         employee.setDepartment(null);
@@ -65,6 +70,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void removeDepartmentAndAllEmp(Long id) {
+        // check if employeeList is not empty
+        // then delete all employees assigned to the deparment to be removed
+
 
         if (!(departmentRepository.findById(id).get().getEmployeeList().isEmpty() || departmentRepository.findById(id).get().getEmployeeList() == null))
             getAllEmployeeByDeptId(id).forEach(employee -> employeeService.deleteEmployee(employee.getId()));

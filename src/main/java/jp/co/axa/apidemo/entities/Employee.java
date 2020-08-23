@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * employee entity
+ */
 @Entity
 @Table(name = "EMPLOYEE")
 @Data

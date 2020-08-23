@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * department entity
+ */
 @Entity
 @Table(name = "DEPARTMENT")
 @Data
