@@ -131,7 +131,7 @@ public class DepartmentController {
     }
 
 
-    @GetMapping("/all/deptbyname/{deptName}")
+    @GetMapping("/deptbyname/{deptName}")
     public ResponseEntity<DepartmentDto> getDepartmentByName(@PathVariable(name = "deptName") String name) {
 
         if (!departmentService.isExistByNameDepartment(name)) {
@@ -145,7 +145,7 @@ public class DepartmentController {
 
     }
 
-    @GetMapping("/all/deptbyid/{deptId}")
+    @GetMapping("/deptbyid/{deptId}")
     public ResponseEntity<DepartmentDto> getDepartmentById(@PathVariable(name = "deptId") Long id) {
 
         if (!departmentService.isExistDepartment(id)) {
@@ -158,7 +158,7 @@ public class DepartmentController {
 
     }
 
-    @GetMapping("/all/deptbycode/{deptCode}")
+    @GetMapping("/deptbycode/{deptCode}")
     public ResponseEntity<DepartmentDto> getDepartmentByCode(@PathVariable(name = "deptCode") String code) {
 
 
@@ -173,7 +173,7 @@ public class DepartmentController {
     }
 
 
-    @GetMapping("/all/{deptName}/employeesbydeptname")
+    @GetMapping("/{deptName}/employeesbydeptname")
     public ResponseEntity<EmployeeDto> getAllEmployeeByDeptName(@PathVariable(name = "deptName") String name) {
 
         if (!departmentService.isExistByNameDepartment(name)) {
@@ -194,7 +194,7 @@ public class DepartmentController {
     }
 
 
-    @GetMapping("/all/{deptCode}/employeesbydeptcode")
+    @GetMapping("/{deptCode}/employeesbydeptcode")
     public ResponseEntity<EmployeeDto> getAllEmployeeByDeptCode(@PathVariable(name = "deptCode") String code) {
 
         if (!departmentService.isExistByCodeDepartment(code)) {
@@ -214,7 +214,7 @@ public class DepartmentController {
     }
 
 
-    @GetMapping("/all/{deptId}/employeesbydeptid")
+    @GetMapping("/{deptId}/employeesbydeptid")
     public ResponseEntity<EmployeeDto> getAllEmployeeByDeptId(@PathVariable(name = "deptId") Long id) {
 
         if (!departmentService.isExistDepartment(id)) {

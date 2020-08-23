@@ -9,17 +9,26 @@ public interface EmployeeService {
 
     List<Employee> retrieveEmployees();
 
+    Boolean isExist(Long employeeId);
+
     Employee getEmployee(Long employeeId);
+
+    Employee getEmployeeByEmail(String email);
+
+    List<Employee> getEmployeeByFstName(String firstName);
+
+    List<Employee> getEmployeeByLstName(String lastName);
 
     void saveEmployee(Employee employee);
 
     void deleteEmployee(Long employeeId);
 
-    void updateEmployee(Employee employee);
+    void updateEmployee(EmployeeDto employeeDto, Long employeeId);
 
     EmployeeDto empToDto(Employee employee);
 
     Employee dtoToEmp(EmployeeDto employeeDto);
 
 
+    boolean isExistByEmail(String email);
 }
